@@ -1,0 +1,9 @@
+.auth-wrapper {
+  border: 1px dashed #aaa;
+  padding: 20px;
+  margin: 16px 0px;
+}
+
+h1 {
+  color: red;
+}

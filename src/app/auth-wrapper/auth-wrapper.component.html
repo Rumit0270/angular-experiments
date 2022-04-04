@@ -1,0 +1,24 @@
+<div class="auth-wrapper">
+  <h1>Auth Wrapper Component</h1>
+
+  <div>
+    <ng-content></ng-content>
+  </div>
+
+  <div [ngStyle]="{ color: 'green' }">
+    <ng-content></ng-content>
+  </div>
+
+  <app-auth #auth [title]="title" (click)="onChildButtonClick()"></app-auth>
+
+  <button (click)="auth.greet()" class="btn btn-success mr-2">
+    Click Me to trigger child method
+  </button>
+  <button (click)="onChildTriggerClick()" class="btn btn-primary mr-2">
+    Click me trigger child method via class
+  </button>
+
+  <button (click)="changeTitle()" class="btn btn-warning mr-2">
+    Change title
+  </button>
+</div>

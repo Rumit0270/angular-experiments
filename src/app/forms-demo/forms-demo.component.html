@@ -1,0 +1,115 @@
+<div class="forms-demo">
+  <div>
+    <h2>Basic Reactive Form Control</h2>
+    <input type="text" [formControl]="textInput" class="form-control" />
+
+    <h2>Basic Template driven form control</h2>
+    <input type="text" [(ngModel)]="templateText" class="form-control" />
+
+    <button
+      type="button"
+      (click)="onButtonClick()"
+      class="btn-check-value btn btn-primary"
+      [disabled]="!signUpForm.valid"
+    >
+      Check values
+    </button>
+  </div>
+
+  <hr />
+  <div>
+    <h2>Sign Up</h2>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUpSubmit()">
+      <input
+        type="text"
+        placeholder="Username"
+        formControlName="username"
+        class="form-control"
+      />
+      <input
+        type="password"
+        placeholder="password"
+        formControlName="password"
+        class="form-control"
+      />
+
+      <input type="checkbox" formControlName="rememberPassword" />
+
+      <ng-container formGroupName="address">
+        <label>Address</label>
+        <input
+          type="text"
+          placeholder="Street"
+          formControlName="street"
+          class="form-control"
+        />
+        <input
+          type="number"
+          placeholder="Zip code"
+          formControlName="zip"
+          class="form-control"
+        />
+      </ng-container>
+
+      <button type="submit" class="btn btn-success">Sign up</button>
+    </form>
+  </div>
+
+  <hr />
+  <div>
+    <h2>Sign In</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSignInSubmut()">
+      <input
+        type="text"
+        placeholder="Username"
+        formControlName="username"
+        class="form-control"
+      />
+
+      <input
+        type="password"
+        placeholder="password"
+        formControlName="password"
+        class="form-control"
+      />
+
+      <div
+        *ngIf="
+          loginPassword?.invalid &&
+          (loginPassword?.dirty || loginPassword?.touched)
+        "
+      >
+        <div *ngIf="loginPassword?.errors?.required">Password is required</div>
+
+        <div *ngIf="loginPassword?.errors?.minlength">
+          Password should be min of 4 characters
+        </div>
+
+        <div *ngIf="loginPassword?.errors?.forbiddenPassword">
+          Please enter a strong password
+        </div>
+      </div>
+
+      <div formArrayName="aliases">
+        <h2>Aliases</h2>
+        <button (click)="addAlias()">+ Add another alias</button>
+
+        <div *ngFor="let alias of aliases.controls; let i = index">
+          <!-- The repeated alias template -->
+          <label for="alias-{{ i }}">Alias:</label>
+          <input id="alias-{{ i }}" type="text" [formControlName]="i" />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        class="btn btn-primary"
+      >
+        Sign In
+      </button>
+    </form>
+  </div>
+</div>

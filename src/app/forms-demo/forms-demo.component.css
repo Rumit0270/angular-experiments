@@ -1,0 +1,17 @@
+.forms-demo {
+  border: 1px solid #aaa;
+  padding: 20px;
+}
+
+.btn-check-value {
+  margin-top: 16px;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+input {
+  display: block;
+  padding: 12px;
+  margin: 8px 0;
+}

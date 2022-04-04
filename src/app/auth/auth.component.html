@@ -1,0 +1,9 @@
+<h1>auth works!</h1>
+
+{{ title }}
+
+<p>Message: {{ messageService.messages$ | async }}</p>
+
+<button (click)="onClick()" class="btn btn-secondary mr-2">
+  Button on Auth component
+</button>
